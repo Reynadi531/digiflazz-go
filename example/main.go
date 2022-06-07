@@ -2,12 +2,21 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/Reynadi531/digiflazz-go"
+	"github.com/joho/godotenv"
 )
 
 func main() {
-	client := digiflazz.New("", "")
+	if err := godotenv.Load(); err != nil {
+		fmt.Println("Faild load env")
+		return
+	}
+	username := os.Getenv("DIGIFLAZZ_USERNAME")
+	key := os.Getenv("DIGIFLAZZ_KEY")
+
+	client := digiflazz.New(username, key)
 	saldo, err := client.Balance.CekSaldo()
 	if err != nil {
 		fmt.Println(err)

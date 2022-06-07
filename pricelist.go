@@ -11,21 +11,21 @@ type Pricelist struct {
 }
 
 type Product struct {
-	ProductName         string  `json:"product_name"`
-	Category            string  `json:"category"`
-	Brand               string  `json:"brand"`
-	Type                string  `json:"type"`
-	SellerName          string  `json:"seller_name"`
-	Price               float64 `json:"price"`
-	BuyerSkuCode        string  `json:"buyer_sku_code"`
-	BuyerProductStatus  bool    `json:"buyer_product_status"`
-	SellerProductStatus bool    `json:"seller_product_status"`
-	UnlimitedStock      bool    `json:"unlimited_stock"`
-	Stock               uint    `json:"stock"`
-	Multi               bool    `json:"multi"`
-	StartCutOff         string  `json:"start_cut_off"`
-	EndCutOff           string  `json:"end_cut_off"`
-	Description         string  `json:"desc"`
+	ProductName         string `json:"product_name"`
+	Category            string `json:"category"`
+	Brand               string `json:"brand"`
+	Type                string `json:"type"`
+	SellerName          string `json:"seller_name"`
+	Price               uint   `json:"price"`
+	BuyerSkuCode        string `json:"buyer_sku_code"`
+	BuyerProductStatus  bool   `json:"buyer_product_status"`
+	SellerProductStatus bool   `json:"seller_product_status"`
+	UnlimitedStock      bool   `json:"unlimited_stock"`
+	Stock               uint   `json:"stock"`
+	Multi               bool   `json:"multi"`
+	StartCutOff         string `json:"start_cut_off"`
+	EndCutOff           string `json:"end_cut_off"`
+	Description         string `json:"desc"`
 }
 
 type PricelistRequest struct {
