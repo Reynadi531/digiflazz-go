@@ -67,3 +67,32 @@ func (c *Transaction) Topup(buyerSkuCode string, customerNumber string, refrence
 
 	return responseTopup.Data, nil
 }
+
+// Refer to: https://developer.digiflazz.com/api/buyer/cek-status/#prepaid
+func (c *Transaction) CekTopup(refrenceId string) (TopupResponse, error) {
+	var responseTopup ResponseTopup
+
+	endpoint := fmt.Sprintf("%s/%s/transaction", c.API.BaseURL, c.API.APIVersion)
+	reqData := TopupRequest{
+		Username:   c.API.opt.Username,
+		RefrenceId: refrenceId,
+		Sign:       SignMD5(c.API.opt.Username, c.API.opt.Key, refrenceId),
+		Testing:    false,
+		Message:    "",
+	}
+
+	header := http.Header{}
+	header.Set("Content-Type", "application/json")
+
+	res, err := CallAPIRequest("POST", endpoint, header, reqData, responseTopup)
+	if err != nil {
+		return TopupResponse{}, err
+	}
+	defer res.Body.Close()
+
+	if err := json.NewDecoder(res.Body).Decode(&responseTopup); err != nil {
+		return TopupResponse{}, err
+	}
+
+	return responseTopup.Data, nil
+}

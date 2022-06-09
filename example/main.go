@@ -23,11 +23,11 @@ func main() {
 		return
 	}
 
-	pricelist, err := client.Pricelist.CekHarga()
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
+	// pricelist, err := client.Pricelist.CekHarga()
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
 
 	// deposit, err := client.Deposit.BuatTiket(200000, digiflazz.BankMandiri, "FooBarz")
 	// if err != nil {
@@ -41,8 +41,11 @@ func main() {
 		return
 	}
 
-	fmt.Printf("Saldo: %f\n", saldo)
-	fmt.Printf("%+v\n", pricelist)
-	fmt.Printf("%+v\n", topup)
+	checkTopup, err := client.Transaction.CekTopup(topup.RefrenceId)
+
+	fmt.Printf("Saldo: %f\n\n", saldo)
+	// fmt.Printf("%+v\n", pricelist)
+	fmt.Printf("%+v\n\n", topup)
+	fmt.Printf("%+v\n\n", checkTopup)
 	// fmt.Printf("%+v\n", deposit)
 }
